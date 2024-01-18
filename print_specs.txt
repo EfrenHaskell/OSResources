@@ -1,0 +1,19 @@
+
+/* The general form of a print function in any language is:
+	print_func_name ( param )
+
+But underneath:
+	print  (variable, length of the variable, type of i/o)
+	To the OS, any print instruction has 3 main parameters
+*/
+
+
+mov rcx, var	// specifies the variable var that we're printing
+mov rdx, len	// specifies the length len of the variable we're printing
+mov rbx, 2	// i/o type (cout or cin in cpp -- 2 specifies stdout)
+mov rax, 4	// specifies that we are making an i/o call
+int 80h		/* interrupt to call OS and put program in kernel mode
+			can alternatively use syscall on certain devices
+			(depends on computer architecture) */
+
+// Each register holds the necessary parameters for the OS to execute the system call
